@@ -39,11 +39,7 @@ class ContractController extends Controller
         $fileName     = $contract['contract_number'].'.pdf';
         $contractFile = $pdf->output();
         Storage::put('public/'.$fileName, $contractFile);
-
         Link::create(['contract_number' => $fileName]);
-
-        Storage::url($fileName);
-
 
         return redirect(route('contracts'));
     }
@@ -59,7 +55,6 @@ class ContractController extends Controller
     public function download($id)
     {
         return Storage::disk('public')->download($id);
-
     }
 }
 
